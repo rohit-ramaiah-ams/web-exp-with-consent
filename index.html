@@ -234,10 +234,10 @@
     <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.experiment.js"></script>
     <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.js"></script>
     <script>
-        window.amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
+        amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
             optOut: true
         });
-        window.amplitude.setOptOut(true);
+        
     </script>
 </head>
 <body>
@@ -318,10 +318,10 @@
         });
 
         function initializeAnalytics(optOut) {
-            window.amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
+            amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
                 optOut: optOut
             });
-            window.amplitude.setOptOut(optOut);
+            
         }
 
         function acceptAllCookies() {
@@ -356,7 +356,7 @@
 
         function handleLearnMoreClick() {
             // Track the event in Amplitude
-            window.amplitude.track('Learn More Button Clicked', {
+            amplitude.track('Learn More Button Clicked', {
                 button_location: 'hero_section',
                 
             });
