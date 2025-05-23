@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Sample Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #ffffff;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 8rem 5% 5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background-color: #f9f9f9;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+
+        /* Cookie Consent Banner */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 1rem 5%;
+            display: none;
+            z-index: 1001;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .cookie-consent.active {
+            display: block;
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cookie-text {
+            flex: 1;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cookie-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .accept-all {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .accept-all:hover {
+            background-color: #27ae60;
+        }
+
+        .customize {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .customize:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <!-- Load both SDKs immediately -->
+    <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.experiment.js"></script>
+    <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.js"></script>
+    <script>
+        window.amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
+            optOut: true
+        });
+        window.amplitude.setOptOut(true);
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">SampleSite</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to Our Sample Site</h1>
+        <p>Discover amazing features and services that will transform your experience. We're here to help you achieve your goals.</p>
+        <a href="#features" class="cta-button" onclick="handleLearnMoreClick()">Learn More</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="feature-card">
+                <h3>Easy to Use</h3>
+                <p>Our platform is designed with simplicity in mind, making it accessible for everyone.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Powerful Features</h3>
+                <p>Access a wide range of tools and features to enhance your productivity.</p>
+            </div>
+            <div class="feature-card">
+                <h3>24/7 Support</h3>
+                <p>Our dedicated team is always ready to help you with any questions or concerns.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 SampleSite. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept-all" onclick="acceptAllCookies()">Accept All</button>
+                <button class="cookie-btn customize" onclick="denyTracking()">Deny Tracking</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show cookie consent banner if no preferences are saved
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookiePreferences')) {
+                document.getElementById('cookieConsent').classList.add('active');
+            } else {
+                // If preferences exist, initialize Analytics based on saved preferences
+                const preferences = JSON.parse(localStorage.getItem('cookiePreferences'));
+                initializeAnalytics(!preferences.analytics);
+            }
+        });
+
+        function initializeAnalytics(optOut) {
+            window.amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
+                optOut: optOut
+            });
+            window.amplitude.setOptOut(optOut);
+        }
+
+        function acceptAllCookies() {
+            const preferences = {
+                essential: true,
+                analytics: true,
+                marketing: true
+            };
+            localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+            
+            // Initialize Analytics with optOut set to false
+            initializeAnalytics(false);
+            hideCookieConsent();
+        }
+
+        function denyTracking() {
+            const preferences = {
+                essential: true,
+                analytics: false,
+                marketing: false
+            };
+            localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+            
+            // Initialize Analytics with optOut set to true
+            initializeAnalytics(true);
+            hideCookieConsent();
+        }
+
+        function hideCookieConsent() {
+            document.getElementById('cookieConsent').classList.remove('active');
+        }
+
+        function handleLearnMoreClick() {
+            // Track the event in Amplitude
+            window.amplitude.track('Learn More Button Clicked', {
+                button_location: 'hero_section',
+                
+            });
+        }
+    </script>
+</body>
+</html> 
