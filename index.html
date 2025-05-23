@@ -230,18 +230,14 @@
             }
         }
     </style>
-    <!-- Load both SDKs immediately -->
-    <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.js"></script>
+    <!-- Load Experiment SDK immediately -->
+    <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.experiment.js"></script>
     <script>
-        amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
-            autocapture:false,
+        window.amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
             optOut: true
         });
+        window.amplitude.setOptOut(true);
     </script>
-    <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.experiment.js"></script>
-    
-        
-    
 </head>
 <body>
     <!-- Navigation -->
@@ -316,17 +312,26 @@
             } else {
                 // If preferences exist, initialize Analytics based on saved preferences
                 const preferences = JSON.parse(localStorage.getItem('cookiePreferences'));
-                initializeAnalytics(!preferences.analytics);
+                if (!preferences.analytics) {
+                    loadAnalyticsScript();
+                }
             }
         });
 
+        function loadAnalyticsScript() {
+            const analyticsScript = document.createElement('script');
+            analyticsScript.src = 'https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.js';
+            analyticsScript.onload = function() {
+                initializeAnalytics(false);
+            };
+            document.head.appendChild(analyticsScript);
+        }
+
         function initializeAnalytics(optOut) {
-            console.log('initializeAnalytics -- optOut = ', optOut);
-            amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
-                
+            window.amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
                 optOut: optOut
             });
-            
+            window.amplitude.setOptOut(optOut);
         }
 
         function acceptAllCookies() {
@@ -337,8 +342,8 @@
             };
             localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
             
-            // Initialize Analytics with optOut set to false
-            initializeAnalytics(false);
+            // Load and initialize Analytics with optOut set to false
+            loadAnalyticsScript();
             hideCookieConsent();
         }
 
@@ -349,9 +354,6 @@
                 marketing: false
             };
             localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
-            
-            // Initialize Analytics with optOut set to true
-            initializeAnalytics(true);
             hideCookieConsent();
         }
 
@@ -361,9 +363,8 @@
 
         function handleLearnMoreClick() {
             // Track the event in Amplitude
-            amplitude.track('Learn More Button Clicked', {
-                button_location: 'hero_section',
-                
+            window.amplitude.track('Learn More Button Clicked', {
+                button_location: 'hero_section'
             });
         }
     </script>
