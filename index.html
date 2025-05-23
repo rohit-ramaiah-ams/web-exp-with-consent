@@ -233,7 +233,13 @@
     <!-- Load both SDKs immediately -->
     <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.experiment.js"></script>
     <script src="https://cdn.amplitude.com/script/383a067bf6e6a9ff502156492a2bdeb8.js"></script>
- 
+    <script>
+        amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
+            autocapture:false,
+            optOut: true
+        });
+        
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -313,7 +319,9 @@
         });
 
         function initializeAnalytics(optOut) {
+            console.log('initializeAnalytics -- optOut = ', optOut);
             amplitude.init('383a067bf6e6a9ff502156492a2bdeb8', {
+                
                 optOut: optOut
             });
             
